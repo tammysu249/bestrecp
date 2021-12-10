@@ -10,24 +10,18 @@
   <ul class="list-group list-group-flush">
     <% @category.matches.each do |match| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to match, match %>
-        <!-- Show link end -->
 
-        <!-- Delete link start -->
         <%= link_to match, method: :delete, data: { confirm: "Do you really want to delete this match" } do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
-        <!-- Delete link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="category_matches_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "categories/category_matches_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 

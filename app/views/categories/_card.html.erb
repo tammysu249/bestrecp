@@ -6,18 +6,14 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Category name</dt>
-      <!-- Display category_name start -->
       <dd><%= category.category_name %></dd>
-      <!-- Display category_name end -->
 
       <dt>Chef</dt>
-      <!-- Display chef_id start -->
       <dd>
         <% if @category.chef.present? %>
           <%= link_to category.chef, category.chef %>
         <% end %>
       </dd>
-      <!-- Display chef_id end -->
 
     </dl>
 
@@ -26,7 +22,6 @@
         <%= link_to_show_or_back category, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link category start -->
       <div class="col">
         <% if current_chef == @category.chef %>
           <%= link_to edit_category_url(category), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -34,9 +29,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link category end -->
 
-      <!-- Delete link category start -->
       <div class="col">
         <% if current_chef == @category.chef %>
           <%= link_to category, method: :delete, data: { confirm: "Do you really want to delete this category?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -44,7 +37,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link category end -->
     </div>
   </div>
 

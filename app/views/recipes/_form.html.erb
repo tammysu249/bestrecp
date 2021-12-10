@@ -1,7 +1,6 @@
 <% was_validated = recipe.errors.any? %>
 
 <%= form_with(model: recipe, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for recipe_name start -->
   <div class="form-group">
     <% recipe_name_class = "form-control" %>
     <% recipe_name_was_invalid = recipe.errors.include?(:recipe_name) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :recipe_name %>
-    <!-- Input for recipe_name start -->
     <%= f.text_field :recipe_name, class: recipe_name_class, placeholder: "Enter recipe name" %>
-    <!-- Input for recipe_name end -->
     <% if recipe_name_was_invalid %>
       <% recipe.errors.full_messages_for(:recipe_name).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for recipe_name end -->
-  <!-- Label and input for category_id start -->
   <div class="form-group">
     <% category_class = "form-control" %>
     <% category_was_invalid = recipe.errors.include?(:category) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :category_id %>
-    <!-- Input for category_id start -->
     <%= f.collection_select :category_id, Category.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for category_id end -->
     <% if category_was_invalid %>
       <% recipe.errors.full_messages_for(:category).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,6 +45,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for category_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

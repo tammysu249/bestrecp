@@ -6,14 +6,10 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>First name</dt>
-      <!-- Display first_name start -->
       <dd><%= chef.first_name %></dd>
-      <!-- Display first_name end -->
 
       <dt>Last name</dt>
-      <!-- Display last_name start -->
       <dd><%= chef.last_name %></dd>
-      <!-- Display last_name end -->
 
     </dl>
 
@@ -22,21 +18,17 @@
         <%= link_to_show_or_back chef, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link chef start -->
       <div class="col">
         <%= link_to edit_chef_url(chef), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link chef end -->
 
-      <!-- Delete link chef start -->
       <div class="col">
         <%= link_to chef, method: :delete, data: { confirm: "Do you really want to delete this chef?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link chef end -->
     </div>
   </div>
 
