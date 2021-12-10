@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @categories = current_chef.categories.page(params[:page]).per(10)
   end
 
   # GET /categories/1
