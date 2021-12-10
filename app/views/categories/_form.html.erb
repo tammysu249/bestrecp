@@ -42,7 +42,7 @@
 
     <%= f.label :chef_id %>
     <!-- Input for chef_id start -->
-    <%= f.number_field :chef_id, class: chef_class, placeholder: "Enter chef" %>
+    <%= f.collection_select :chef_id, Chef.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for chef_id end -->
     <% if chef_was_invalid %>
       <% category.errors.full_messages_for(:chef).each do |message| %>
