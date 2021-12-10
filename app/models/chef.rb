@@ -1,6 +1,9 @@
 class Chef < ApplicationRecord
   # Direct associations
 
+  has_many   :categories,
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations

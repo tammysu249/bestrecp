@@ -4,6 +4,8 @@ RSpec.describe Chef, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:categories) }
+
     end
 
     describe "InDirect Associations" do
