@@ -12,6 +12,10 @@ class Category < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :category_recipes,
+             :through => :matches,
+             :source => :category
+
   # Validations
 
   # Scopes

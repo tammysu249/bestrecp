@@ -14,6 +14,8 @@ RSpec.describe Category, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:category_recipes) }
+
     end
 
     describe "Validations" do

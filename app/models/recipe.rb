@@ -9,6 +9,10 @@ class Recipe < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :recipe_categories,
+             :through => :matches,
+             :source => :recipe
+
   # Validations
 
   # Scopes
