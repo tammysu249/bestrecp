@@ -4,6 +4,8 @@ RSpec.describe Category, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:recipes) }
+
     it { should belong_to(:chef) }
 
     end
