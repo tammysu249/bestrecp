@@ -12,7 +12,11 @@
 
       <dt>Chef</dt>
       <!-- Display chef_id start -->
-      <dd><%= category.chef_id %></dd>
+      <dd>
+        <% if @category.chef.present? %>
+          <%= link_to category.chef, category.chef %>
+        <% end %>
+      </dd>
       <!-- Display chef_id end -->
 
     </dl>

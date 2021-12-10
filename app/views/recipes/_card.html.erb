@@ -12,7 +12,11 @@
 
       <dt>Category</dt>
       <!-- Display category_id start -->
-      <dd><%= recipe.category_id %></dd>
+      <dd>
+        <% if @recipe.category.present? %>
+          <%= link_to recipe.category, recipe.category %>
+        <% end %>
+      </dd>
       <!-- Display category_id end -->
 
     </dl>

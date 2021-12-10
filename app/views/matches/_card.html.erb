@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>Category</dt>
       <!-- Display category_id start -->
-      <dd><%= match.category_id %></dd>
+      <dd>
+        <% if @match.category.present? %>
+          <%= link_to match.category, match.category %>
+        <% end %>
+      </dd>
       <!-- Display category_id end -->
 
       <dt>Recipe</dt>
       <!-- Display recipe_id start -->
-      <dd><%= match.recipe_id %></dd>
+      <dd>
+        <% if @match.recipe.present? %>
+          <%= link_to match.recipe, match.recipe %>
+        <% end %>
+      </dd>
       <!-- Display recipe_id end -->
 
     </dl>
