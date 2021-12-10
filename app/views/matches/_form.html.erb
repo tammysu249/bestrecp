@@ -1,0 +1,57 @@
+<% was_validated = match.errors.any? %>
+
+<%= form_with(model: match, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for category_id start -->
+  <div class="form-group">
+    <% category_class = "form-control" %>
+    <% category_was_invalid = match.errors.include?(:category) %>
+
+    <% if was_validated %>
+      <% if category_was_invalid %>
+        <% category_class << " is-invalid" %>
+      <% else %>
+        <% category_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :category_id %>
+    <!-- Input for category_id start -->
+    <%= f.number_field :category_id, class: category_class, placeholder: "Enter category" %>
+    <!-- Input for category_id end -->
+    <% if category_was_invalid %>
+      <% match.errors.full_messages_for(:category).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for category_id end -->
+  <!-- Label and input for recipe_id start -->
+  <div class="form-group">
+    <% recipe_class = "form-control" %>
+    <% recipe_was_invalid = match.errors.include?(:recipe) %>
+
+    <% if was_validated %>
+      <% if recipe_was_invalid %>
+        <% recipe_class << " is-invalid" %>
+      <% else %>
+        <% recipe_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :recipe_id %>
+    <!-- Input for recipe_id start -->
+    <%= f.number_field :recipe_id, class: recipe_class, placeholder: "Enter recipe" %>
+    <!-- Input for recipe_id end -->
+    <% if recipe_was_invalid %>
+      <% match.errors.full_messages_for(:recipe).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for recipe_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

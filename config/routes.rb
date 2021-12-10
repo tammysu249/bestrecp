@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :matches
   resources :recipes
   resources :categories
   devise_for :chefs
