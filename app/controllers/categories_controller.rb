@@ -5,7 +5,8 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = current_chef.categories.page(params[:page]).per(10)
+    @q = current_chef.categories.ransack(params[:q])
+    @categories = @q.result(:distinct => true).includes(:chef, :recipes, :matches, :category_recipes).page(params[:page]).per(10)
   end
 
   # GET /categories/1
