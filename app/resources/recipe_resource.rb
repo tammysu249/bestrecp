@@ -14,4 +14,7 @@ class RecipeResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :recipe_categories,
+               resource: CategoryResource
+
 end
