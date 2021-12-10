@@ -7,6 +7,9 @@ class CategoryResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :matches,
+             foreign_key: :recipe_id
+
   has_many   :recipes
 
   belongs_to :chef
