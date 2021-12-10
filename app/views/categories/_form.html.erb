@@ -28,30 +28,9 @@
   </div>
   <!-- Label and input for category_name end -->
   <!-- Label and input for chef_id start -->
-  <div class="form-group">
-    <% chef_class = "form-control" %>
-    <% chef_was_invalid = category.errors.include?(:chef) %>
-
-    <% if was_validated %>
-      <% if chef_was_invalid %>
-        <% chef_class << " is-invalid" %>
-      <% else %>
-        <% chef_class << " is-valid" %>
-      <% end %>
-    <% end %>
-
-    <%= f.label :chef_id %>
-    <!-- Input for chef_id start -->
-    <%= f.collection_select :chef_id, Chef.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for chef_id end -->
-    <% if chef_was_invalid %>
-      <% category.errors.full_messages_for(:chef).each do |message| %>
-        <div class="invalid-feedback d-flex">
-          <%= message %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <!-- Input for "chef_id" start -->
+  <%= f.hidden_field :chef_id, value: current_chef.id %>
+  <!-- Input for "chef_id" end -->
   <!-- Label and input for chef_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
