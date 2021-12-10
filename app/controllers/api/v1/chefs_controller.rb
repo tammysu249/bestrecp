@@ -13,7 +13,7 @@ class Api::V1::ChefsController < Api::V1::GraphitiController
     chef = ChefResource.build(params)
 
     if chef.save
-      render jsonapi: chef, status: 201
+      render jsonapi: chef, status: :created
     else
       render jsonapi_errors: chef
     end
@@ -33,7 +33,7 @@ class Api::V1::ChefsController < Api::V1::GraphitiController
     chef = ChefResource.find(params)
 
     if chef.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: chef
     end

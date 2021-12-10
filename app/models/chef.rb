@@ -1,10 +1,9 @@
 class Chef < ApplicationRecord
-  
   include JwtToken
-# Direct associations
+  # Direct associations
 
   has_many   :categories,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 

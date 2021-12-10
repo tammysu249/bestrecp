@@ -16,5 +16,4 @@ class RecipeResource < ApplicationResource
 
   many_to_many :recipe_categories,
                resource: CategoryResource
-
 end

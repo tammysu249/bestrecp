@@ -9,8 +9,7 @@ class ChefResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :categories
+  has_many :categories
 
   # Indirect associations
-
 end

@@ -1,12 +1,14 @@
 class CategoriesController < ApplicationController
-  before_action :current_chef_must_be_category_chef, only: [:edit, :update, :destroy] 
+  before_action :current_chef_must_be_category_chef,
+                only: %i[edit update destroy]
 
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: %i[show edit update destroy]
 
   # GET /categories
   def index
     @q = current_chef.categories.ransack(params[:q])
-    @categories = @q.result(:distinct => true).includes(:chef, :recipes, :matches, :category_recipes).page(params[:page]).per(10)
+    @categories = @q.result(distinct: true).includes(:chef, :recipes,
+                                                     :matches, :category_recipes).page(params[:page]).per(10)
   end
 
   # GET /categories/1
@@ -21,17 +23,16 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /categories
   def create
     @category = Category.new(category_params)
 
     if @category.save
-      message = 'Category was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Category was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @category, notice: message
       end
@@ -43,7 +44,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to @category, notice: "Category was successfully updated."
     else
       render :edit
     end
@@ -53,30 +54,30 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     message = "Category was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to categories_url, notice: message
     end
   end
-
 
   private
 
   def current_chef_must_be_category_chef
     set_category
     unless current_chef == @category.chef
-      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+      redirect_back fallback_location: root_path,
+                    alert: "You are not authorized for that."
     end
   end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def category_params
-      params.require(:category).permit(:category_name, :chef_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def category_params
+    params.require(:category).permit(:category_name, :chef_id)
+  end
 end

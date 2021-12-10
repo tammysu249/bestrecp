@@ -2,19 +2,19 @@ class Category < ApplicationRecord
   # Direct associations
 
   has_many   :matches,
-             :foreign_key => "recipe_id",
-             :dependent => :destroy
+             foreign_key: "recipe_id",
+             dependent: :destroy
 
   has_many   :recipes,
-             :dependent => :nullify
+             dependent: :nullify
 
   belongs_to :chef
 
   # Indirect associations
 
   has_many   :category_recipes,
-             :through => :matches,
-             :source => :category
+             through: :matches,
+             source: :category
 
   # Validations
 
@@ -23,5 +23,4 @@ class Category < ApplicationRecord
   def to_s
     category_name
   end
-
 end

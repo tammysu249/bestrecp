@@ -13,7 +13,7 @@ class Api::V1::MatchesController < Api::V1::GraphitiController
     match = MatchResource.build(params)
 
     if match.save
-      render jsonapi: match, status: 201
+      render jsonapi: match, status: :created
     else
       render jsonapi_errors: match
     end
@@ -33,7 +33,7 @@ class Api::V1::MatchesController < Api::V1::GraphitiController
     match = MatchResource.find(params)
 
     if match.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: match
     end

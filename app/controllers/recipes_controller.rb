@@ -1,10 +1,11 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes
   def index
     @q = Recipe.ransack(params[:q])
-    @recipes = @q.result(:distinct => true).includes(:category, :matches, :recipe_categories).page(params[:page]).per(10)
+    @recipes = @q.result(distinct: true).includes(:category, :matches,
+                                                  :recipe_categories).page(params[:page]).per(10)
   end
 
   # GET /recipes/1
@@ -18,17 +19,16 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
-      message = 'Recipe was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Recipe was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @recipe, notice: message
       end
@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   def update
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: 'Recipe was successfully updated.'
+      redirect_to @recipe, notice: "Recipe was successfully updated."
     else
       render :edit
     end
@@ -50,22 +50,22 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     message = "Recipe was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to recipes_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def recipe_params
-      params.require(:recipe).permit(:recipe_name, :category_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def recipe_params
+    params.require(:recipe).permit(:recipe_name, :category_id)
+  end
 end

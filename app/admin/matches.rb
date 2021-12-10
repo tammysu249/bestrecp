@@ -1,6 +1,5 @@
 ActiveAdmin.register Match do
-
- permit_params :category_id, :recipe_id
+  permit_params :category_id, :recipe_id
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,5 +13,4 @@ ActiveAdmin.register Match do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end

@@ -2,16 +2,16 @@ class Recipe < ApplicationRecord
   # Direct associations
 
   has_many   :matches,
-             :foreign_key => "category_id",
-             :dependent => :destroy
+             foreign_key: "category_id",
+             dependent: :destroy
 
   belongs_to :category
 
   # Indirect associations
 
   has_many   :recipe_categories,
-             :through => :matches,
-             :source => :recipe
+             through: :matches,
+             source: :recipe
 
   # Validations
 
@@ -20,5 +20,4 @@ class Recipe < ApplicationRecord
   def to_s
     recipe_name
   end
-
 end

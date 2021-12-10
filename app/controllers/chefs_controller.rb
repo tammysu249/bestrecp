@@ -1,5 +1,5 @@
 class ChefsController < ApplicationController
-  before_action :set_chef, only: [:show, :edit, :update, :destroy]
+  before_action :set_chef, only: %i[show edit update destroy]
 
   # GET /chefs
   def index
@@ -17,15 +17,14 @@ class ChefsController < ApplicationController
   end
 
   # GET /chefs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /chefs
   def create
     @chef = Chef.new(chef_params)
 
     if @chef.save
-      redirect_to @chef, notice: 'Chef was successfully created.'
+      redirect_to @chef, notice: "Chef was successfully created."
     else
       render :new
     end
@@ -34,7 +33,7 @@ class ChefsController < ApplicationController
   # PATCH/PUT /chefs/1
   def update
     if @chef.update(chef_params)
-      redirect_to @chef, notice: 'Chef was successfully updated.'
+      redirect_to @chef, notice: "Chef was successfully updated."
     else
       render :edit
     end
@@ -43,17 +42,18 @@ class ChefsController < ApplicationController
   # DELETE /chefs/1
   def destroy
     @chef.destroy
-    redirect_to chefs_url, notice: 'Chef was successfully destroyed.'
+    redirect_to chefs_url, notice: "Chef was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chef
-      @chef = Chef.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def chef_params
-      params.require(:chef).permit(:first_name, :last_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_chef
+    @chef = Chef.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def chef_params
+    params.require(:chef).permit(:first_name, :last_name)
+  end
 end

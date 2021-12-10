@@ -2,10 +2,10 @@ class Match < ApplicationRecord
   # Direct associations
 
   belongs_to :category,
-             :class_name => "Recipe"
+             class_name: "Recipe"
 
   belongs_to :recipe,
-             :class_name => "Category"
+             class_name: "Category"
 
   # Indirect associations
 
@@ -16,5 +16,4 @@ class Match < ApplicationRecord
   def to_s
     category.to_s
   end
-
 end

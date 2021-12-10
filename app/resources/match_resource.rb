@@ -14,5 +14,4 @@ class MatchResource < ApplicationResource
              resource: CategoryResource
 
   # Indirect associations
-
 end
