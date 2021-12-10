@@ -1,6 +1,9 @@
 class Match < ApplicationRecord
   # Direct associations
 
+  belongs_to :recipe,
+             :class_name => "Category"
+
   # Indirect associations
 
   # Validations
