@@ -7,6 +7,8 @@ class CategoryResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :recipes
+
   belongs_to :chef
 
   # Indirect associations
