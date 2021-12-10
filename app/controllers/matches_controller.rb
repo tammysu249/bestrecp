@@ -24,7 +24,12 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
 
     if @match.save
-      redirect_to @match, notice: 'Match was successfully created.'
+      message = 'Match was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @match, notice: message
+      end
     else
       render :new
     end

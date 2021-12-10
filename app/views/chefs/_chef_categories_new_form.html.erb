@@ -1,0 +1,22 @@
+<!-- Form category start -->
+<%= form_with(model: @category, local: true) do |f| %>
+<!-- Form category end -->
+
+  <!-- Label and input for category_name start -->
+  <div class="form-group">
+    <%= f.label :category_name %>
+
+    <!-- Input for category_name start -->
+    <%= f.text_field :category_name, class: "form-control" %>
+    <!-- Input for category_name end -->
+  </div>
+  <!-- Label and input for category_name end -->
+
+  <!-- Label and input for chef_id start -->
+  <!-- Input for chef_id start -->
+  <%= f.hidden_field :chef_id, value: @chef.id %>
+  <!-- Input for chef_id end -->
+  <!-- Label and input for chef_id end -->
+
+  <%= f.submit "Create category", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

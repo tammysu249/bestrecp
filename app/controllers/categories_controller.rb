@@ -8,6 +8,8 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
+    @match = Match.new
+    @recipe = Recipe.new
   end
 
   # GET /categories/new
@@ -24,7 +26,12 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      message = 'Category was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @category, notice: message
+      end
     else
       render :new
     end
