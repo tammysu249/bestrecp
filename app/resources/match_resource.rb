@@ -7,6 +7,9 @@ class MatchResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :category,
+             resource: RecipeResource
+
   belongs_to :recipe,
              resource: CategoryResource
 
