@@ -24,16 +24,20 @@
 
       <!-- Edit link category start -->
       <div class="col">
-        <%= link_to edit_category_url(category), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_chef == @category.chef %>
+          <%= link_to edit_category_url(category), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link category end -->
 
       <!-- Delete link category start -->
       <div class="col">
-        <%= link_to category, method: :delete, data: { confirm: "Do you really want to delete this category?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_chef == @category.chef %>
+          <%= link_to category, method: :delete, data: { confirm: "Do you really want to delete this category?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link category end -->

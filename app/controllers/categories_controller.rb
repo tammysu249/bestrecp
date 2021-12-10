@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :current_chef_must_be_category_chef, only: [:edit, :update, :destroy] 
+
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
@@ -59,6 +61,14 @@ class CategoriesController < ApplicationController
 
 
   private
+
+  def current_chef_must_be_category_chef
+    set_category
+    unless current_chef == @category.chef
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
