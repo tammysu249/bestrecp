@@ -3,7 +3,7 @@ class ChefsController < ApplicationController
 
   # GET /chefs
   def index
-    @chefs = Chef.all
+    @chefs = Chef.page(params[:page]).per(10)
   end
 
   # GET /chefs/1

@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
 
   # GET /matches
   def index
-    @matches = Match.all
+    @matches = Match.page(params[:page]).per(10)
   end
 
   # GET /matches/1
