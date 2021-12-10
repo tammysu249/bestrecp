@@ -4,6 +4,8 @@ RSpec.describe Recipe, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:matches) }
+
     it { should belong_to(:category) }
 
     end
